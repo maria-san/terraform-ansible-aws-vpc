@@ -1,0 +1,10 @@
+---
+
+- include: vpc_plan.yaml
+  tags: tf_plan
+
+- include: vpc_apply.yaml
+  tags: tf_apply
+
+- include: vpc_destroy.yaml
+  tags: [ tf_destroy, never ]

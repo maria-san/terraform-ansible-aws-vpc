@@ -1,0 +1,23 @@
+---
+
+- name: Plan VPC Terraform with S3 backend configuration
+  register: plan_result
+  community.general.terraform:
+    project_path: "{{ terraform_vpc_dir }}"
+    plan_file: "{{  terraform_vpc_dir }}/{{ tf_plan_file }}"
+    force_init: true
+    state: planned
+    variables: 
+      project: "{{ project }}"
+      region: "{{ region }}"
+      vpc_name: "{{ vpc_name }}"
+      vpc_cidr_block: "{{ vpc_cidr_block }}"
+      azs: "{{ azs }}"
+    backend_config:
+      region: "{{ region }}"
+      bucket: "{{ terraform_state_bucket | replace('s3://', '') }}"
+      key: "{{ tf_key }}"
+    
+- name: Terraform plan result
+  debug:
+    msg: "{{ plan_result.stdout_lines | regex_replace('\\n', '\n') }}"

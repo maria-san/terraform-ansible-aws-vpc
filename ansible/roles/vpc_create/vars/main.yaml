@@ -1,0 +1,4 @@
+---
+
+tf_plan_file: "vpc-plan.tfplan"
+tf_key: "vpc.state"

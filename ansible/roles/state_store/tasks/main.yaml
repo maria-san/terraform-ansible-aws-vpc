@@ -1,0 +1,6 @@
+---
+
+- include: state_store_create.yaml
+
+- include: state_store_delete.yaml
+  tags: [ never ]

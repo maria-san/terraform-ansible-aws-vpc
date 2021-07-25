@@ -1,0 +1,19 @@
+---
+
+- name: "Destroy VPC Terraform"
+  register: destroy_result
+  community.general.terraform:
+    project_path: "{{ terraform_vpc_dir }}"
+    plan_file: "{{  terraform_vpc_dir }}/{{ tf_plan_file }}"
+    state: absent
+    variables: 
+      project: "{{ project }}"
+      region: "{{ region }}"
+      vpc_name: "{{ vpc_name }}"
+      vpc_cidr_block: "{{ vpc_cidr_block }}"
+      azs: "{{ azs }}"
+
+- name: Terraform destroy result
+  debug:
+    msg: "{{ destroy_result.stdout_lines | regex_replace('\\n', '\n') }}"
+

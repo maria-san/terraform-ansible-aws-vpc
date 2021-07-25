@@ -1,0 +1,7 @@
+---
+
+- name: Delete Terraform state store
+  amazon.aws.s3_bucket:
+    name: "{{ terraform_state_bucket | replace('s3://', '') }}"
+    state: absent
+    force: yes

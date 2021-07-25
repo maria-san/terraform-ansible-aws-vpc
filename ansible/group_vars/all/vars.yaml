@@ -1,0 +1,9 @@
+project: "sample"
+
+terraform_state_bucket: "s3://{{ project }}-terraform-state-store"
+terraform_vpc_dir: "{{ playbook_dir }}/../terraform/vpc"
+
+region: "us-east-1"
+azs: "us-east-1a,us-east-1b,us-east-1c"
+vpc_name: "{{ project }}-vpc"
+vpc_cidr_block: "10.0.0.0/16"

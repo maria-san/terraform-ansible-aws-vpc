@@ -1,0 +1,12 @@
+---
+
+- name: Create Terraform state store
+  amazon.aws.s3_bucket:
+    name: "{{ terraform_state_bucket | replace('s3://', '') }}"
+    state: present
+    region: "{{ region }}"
+    versioning: True
+    encryption: "AES256"
+    tags:
+      project: "{{ project }}"
+      component: s3
